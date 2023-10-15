@@ -16,11 +16,11 @@ public class KitchenWieldable : MonoBehaviour
         transform.localPosition = Vector3.zero;
     }
 
-    public void Destroy()
+    public void DestroySelf()
     {
         try { _parentHoldingMe.KitchenWieldableHeld = null; }
         catch { Debug.Log("KitchenWieldable has no parent counter"); };
-        Destroy(this);
+        Destroy(transform.gameObject);
     }
 
 }

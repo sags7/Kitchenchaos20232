@@ -14,7 +14,7 @@ public class CuttingCounter : BaseCounter
         _cuttingProgress = 0;
         OnCuttingProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { cuttingProgress = _cuttingProgress });
     }
-    public override void AlternativeInteracted(Player player)
+    public override void AlternativeInteracted(IKitchenWieldableParent player)
     {
         if (KitchenWieldableHeld)
         {
