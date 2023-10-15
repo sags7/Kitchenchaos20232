@@ -10,7 +10,7 @@ public class CuttingCounter : BaseCounter
 
     public override void Interacted(IKitchenWieldableParent player)
     {
-        TransferWieldableTo(player);
+        SwapWieldablesWith(player);
         _cuttingProgress = 0;
         OnCuttingProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { cuttingProgress = _cuttingProgress });
     }

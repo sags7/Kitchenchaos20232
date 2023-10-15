@@ -6,7 +6,7 @@ public class TrashCounter : BaseCounter
 {
     public override void Interacted(IKitchenWieldableParent player)
     {
-        TransferWieldableTo(player);
+        SwapWieldablesWith(player);
         KitchenWieldableHeld.DestroySelf();
     }
 }

@@ -4,7 +4,7 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
 {
     public virtual void Interacted(IKitchenWieldableParent player)
     {
-        TransferWieldableTo(player);
+        SwapWieldablesWith(player);
     }
     public virtual void AlternativeInteracted(IKitchenWieldableParent player)
     {
@@ -15,7 +15,7 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
     public KitchenWieldable KitchenWieldableHeld { get; set; }
     [field: SerializeField] public Transform SpawnPoint { get; set; }
 
-    public void TransferWieldableTo(IKitchenWieldableParent player)
+    public void SwapWieldablesWith(IKitchenWieldableParent player)
     {
         KitchenWieldable playerItem = player.KitchenWieldableHeld ? player.KitchenWieldableHeld : null;
         KitchenWieldable counterItem = KitchenWieldableHeld ? KitchenWieldableHeld : null;

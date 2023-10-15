@@ -10,7 +10,7 @@ public class ContainerCounter : BaseCounter
     {
         if (!KitchenWieldableHeld && !player.KitchenWieldableHeld)
             SpawnItem(player);
-        else TransferWieldableTo(player);
+        else SwapWieldablesWith(player);
     }
 
     private void SpawnItem(IKitchenWieldableParent parent)
@@ -18,7 +18,7 @@ public class ContainerCounter : BaseCounter
         GameObject newItem = Instantiate(_kitchenWieldableSO._gameObject, parent.SpawnPoint);
         newItem.transform.localPosition = Vector3.zero;
         KitchenWieldableHeld = newItem.GetComponent<KitchenWieldable>();
-        TransferWieldableTo(parent);
+        SwapWieldablesWith(parent);
 
         OnSpawnedItem?.Invoke(this, EventArgs.Empty);
     }

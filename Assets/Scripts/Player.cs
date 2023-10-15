@@ -116,7 +116,7 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
     [field: SerializeField] public Transform SpawnPoint { get; set; }
     public KitchenWieldable KitchenWieldableHeld { get; set; }
 
-    public void TransferWieldableTo(IKitchenWieldableParent newParent)
+    public void SwapWieldablesWith(IKitchenWieldableParent newParent)
     {
         //copied from BaseCounter implementation(untested)
         KitchenWieldable newParentItem = newParent.KitchenWieldableHeld ? newParent.KitchenWieldableHeld : null;
