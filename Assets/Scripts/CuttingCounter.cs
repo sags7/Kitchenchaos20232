@@ -1,29 +1,37 @@
-using UnityEditor;
 using UnityEngine;
 
 public class CuttingCounter : BaseCounter
 {
     // public event EventHandler OnSpawnedItem; //Unimplemented Event
     [SerializeField] private RecipeSO[] _availableRecipesArr;
+    private int _cuttingProgress;
+
+    public override void Interacted(IKitchenWieldableParent player)
+    {
+        TransferWieldableTo(player);
+        _cuttingProgress = 0;
+    }
     public override void AlternativeInteracted(Player player)
     {
         if (KitchenWieldableHeld)
         {
             try { AttemptRecipes(_availableRecipesArr); }
-            catch { Debug.Log("Item has no recipes"); }
+            catch { Debug.Log("Counter has no recipes assigned!"); }
         }
-        else Debug.Log("No Ingredients for recipe");
+        else Debug.Log("No Ingredients on Counter");
     }
 
     internal void AttemptRecipes(RecipeSO[] availableRecipesArr)
     {
         foreach (RecipeSO recipe in availableRecipesArr)
         {
-            if (KitchenWieldableHeld._kitchenWieldableSO == recipe.inputs[0]) TransmuteTo(recipe.output);
-            //Debug.Log("AttemptedRecipe:" + recipe.inputs[0] + "Ingredient: " + KitchenWieldableHeld._kitchenWieldableSO);
-
-            //for each ingredient in the current recipe, check if its available
-            //then create output if true and destroy ingredients
+            if (KitchenWieldableHeld._kitchenWieldableSO == recipe.inputs[0])
+            {
+                _cuttingProgress++;
+                if (_cuttingProgress >= recipe.cuttingNeeded)
+                    TransmuteTo(recipe.output);
+                //CURRENT IMPLEMENTATION ONLY WORKS WITH ONE INPUT INGREDIENT AND IS HARDCODED TO BE THE FIRST ON THE ARRAY!!!
+            }
         };
     }
 

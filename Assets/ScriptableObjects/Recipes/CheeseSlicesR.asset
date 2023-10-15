@@ -15,3 +15,4 @@ MonoBehaviour:
   inputs:
   - {fileID: 11400000, guid: 16938f9215e00f348a76087fe5649922, type: 2}
   output: {fileID: 11400000, guid: 6950c07db41a1514888740b39831dc43, type: 2}
+  cuttingNeeded: 4
