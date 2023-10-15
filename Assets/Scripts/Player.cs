@@ -29,7 +29,14 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
     private void Start()
     {
         _gameInput.OnInteract += OnInteractAction;
+        _gameInput.OnAlternateInteract += OnAlternateInteractAction;
     }
+
+    private void OnAlternateInteractAction(object sender, EventArgs e)
+    {
+        if (_selectedCounter) _selectedCounter.AlternativeInteracted(this);
+    }
+
     private void Update()
     {
         _inputVector = _gameInput.GetMovementVectorNormalized();

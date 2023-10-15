@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 public class KitchenWieldable : MonoBehaviour
 {
-    [SerializeField] private KitchenWieldableSO _kitchenWieldableSO;
+    [SerializeField] public KitchenWieldableSO _kitchenWieldableSO;
     private IKitchenWieldableParent _parentHoldingMe;
 
     public KitchenWieldableSO GetKitchenWieldableSO() => _kitchenWieldableSO;
@@ -16,9 +17,11 @@ public class KitchenWieldable : MonoBehaviour
         transform.localPosition = Vector3.zero;
     }
 
-    private void OnDestroy()
+    public void Destroy()
     {
         try { _parentHoldingMe.KitchenWieldableHeld = null; }
         catch { Debug.Log("KitchenWieldable has no parent counter"); };
+        Destroy(this);
     }
+
 }

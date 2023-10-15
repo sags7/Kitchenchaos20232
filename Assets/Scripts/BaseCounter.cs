@@ -6,6 +6,11 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
     {
         TransferWieldableTo(player);
     }
+    public virtual void AlternativeInteracted(Player player)
+    {
+        Debug.Log("This counter doesn't have an alternative interaction");
+    }
+    
 
     //--------------------------IKitchenWieldable implementation-----------------------------------------
     public KitchenWieldable KitchenWieldableHeld { get; set; }
