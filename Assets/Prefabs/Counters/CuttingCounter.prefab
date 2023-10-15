@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cuttingCounter: {fileID: 7826946959701001107}
   _barImage: {fileID: 7969084420470441990}
+  _animator: {fileID: 7462399819401819472}
 --- !u!1 &8304245906511590754
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +489,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 121713600529685128}
   m_SourcePrefab: {fileID: 100100000, guid: d72bee846803d074784ffb8f64e993ca, type: 3}
+--- !u!95 &7462399819401819472 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2831942792982843299, guid: d72bee846803d074784ffb8f64e993ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 4666522985662397171}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9183722452314185304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4589716710238282923, guid: d72bee846803d074784ffb8f64e993ca,

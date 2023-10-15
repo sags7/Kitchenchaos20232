@@ -12,6 +12,7 @@ public class CuttingCounter : BaseCounter
     {
         TransferWieldableTo(player);
         _cuttingProgress = 0;
+        OnCuttingProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { cuttingProgress = _cuttingProgress });
     }
     public override void AlternativeInteracted(Player player)
     {

@@ -5,6 +5,8 @@ public class ProgressBarUI : MonoBehaviour
 {
     [SerializeField] private BaseCounter _cuttingCounter;
     [SerializeField] private Image _barImage;
+    [SerializeField] private Animator _animator;
+    private const string _CUT = "Cut";
 
     private void Start()
     {
@@ -17,8 +19,13 @@ public class ProgressBarUI : MonoBehaviour
     }
     private void OnCuttingProgressChangeAction(object sender, CuttingCounter.OnCuttingProgressChangeEventArgs e)
     {
+        if (e.cuttingProgress != 0)
+        {
+            _animator.SetTrigger(_CUT);
+            Show();
+        }
+        else Hide();
         _barImage.fillAmount = e.cuttingProgress;
-        Show();
     }
     private void Show() => gameObject.SetActive(true);
     private void Hide() => gameObject.SetActive(false);
