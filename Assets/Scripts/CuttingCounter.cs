@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class CuttingCounter : BaseCounter
 {
-    // public event EventHandler OnSpawnedItem; //Unimplemented Event
+    public event EventHandler<OnCuttingProgressChangeEventArgs> OnCuttingProgressChange;
+    public class OnCuttingProgressChangeEventArgs : EventArgs { public float cuttingProgress; }
     [SerializeField] private RecipeSO[] _availableRecipesArr;
     private int _cuttingProgress;
 
@@ -28,6 +30,7 @@ public class CuttingCounter : BaseCounter
             if (KitchenWieldableHeld._kitchenWieldableSO == recipe.inputs[0])
             {
                 _cuttingProgress++;
+                OnCuttingProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { cuttingProgress = (float)_cuttingProgress / recipe.cuttingNeeded });
                 if (_cuttingProgress >= recipe.cuttingNeeded)
                     TransmuteTo(recipe.output);
                 //CURRENT IMPLEMENTATION ONLY WORKS WITH ONE INPUT INGREDIENT AND IS HARDCODED TO BE THE FIRST ON THE ARRAY!!!
