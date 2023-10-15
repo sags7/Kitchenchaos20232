@@ -8,7 +8,7 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
     [SerializeField] private float _movementSpeed = 10f;
     [SerializeField] private float _rotateSpeed = 10f;
     [SerializeField] private GameInput _gameInput;
-    [SerializeField] private float _playerRadius = 0.7f;
+    [SerializeField] private float _playerRadius = 0.6f;
     [SerializeField] private float _playerHeight = 1f;
     [SerializeField] private LayerMask _countersLayerMask;
 
@@ -89,23 +89,26 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
         {
             if (moveDir.x != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * _playerHeight, _playerRadius, new Vector3(moveDir.x, 0, 0), moveDistance))
             {
-                moveDir = new Vector3(moveDir.x, 0, 0).normalized;
-                canMove = true;
+                moveDir = new Vector3(moveDir.x, 0, 0);
+                Move(moveDir, moveDistance);
             }
-            else if (moveDir.y != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * _playerHeight, _playerRadius, new Vector3(0, 0, moveDir.z), moveDistance))
+            else if (moveDir.z != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * _playerHeight, _playerRadius, new Vector3(0, 0, moveDir.z), moveDistance))
             {
-                moveDir = new Vector3(0, 0, moveDir.z).normalized;
-                canMove = true;
+                moveDir = new Vector3(0, 0, moveDir.z);
+                Move(moveDir, moveDistance);
+
             }
         }
-        else
-        {
-            if (moveDir != Vector3.zero) _isWalking = true;
-            else _isWalking = false;
-            transform.position += moveDir * moveDistance;
-        }
+        else Move(moveDir, moveDistance);
 
         transform.forward = Vector3.Slerp(transform.forward, moveDir, _rotateSpeed * Time.deltaTime);
+    }
+
+    private void Move(Vector3 moveDir, float moveDistance)
+    {
+        if (moveDir != Vector3.zero) _isWalking = true;
+        else _isWalking = false;
+        transform.position += moveDir * moveDistance;
     }
 
     public bool IsWalking() => _isWalking;

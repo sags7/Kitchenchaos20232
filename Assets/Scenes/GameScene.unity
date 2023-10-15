@@ -1600,6 +1600,11 @@ PrefabInstance:
       propertyPath: _gameInput
       value: 
       objectReference: {fileID: 1544035103}
+    - target: {fileID: 5382765955333389063, guid: 59edae839b9d5e948bac1ee9ce00edf4,
+        type: 3}
+      propertyPath: _playerRadius
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7987378848027207306, guid: 59edae839b9d5e948bac1ee9ce00edf4,
         type: 3}
       propertyPath: m_Name
