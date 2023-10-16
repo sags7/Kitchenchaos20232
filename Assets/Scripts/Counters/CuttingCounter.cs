@@ -5,7 +5,7 @@ public class CuttingCounter : BaseCounter
 {
     public event EventHandler<OnCuttingProgressChangeEventArgs> OnCuttingProgressChange;
     public class OnCuttingProgressChangeEventArgs : EventArgs { public float cuttingProgress; }
-    [SerializeField] private RecipeSO[] _availableRecipesArr;
+    [SerializeField] private CuttingRecipeSO[] _availableRecipesArr;
     private int _cuttingProgress;
 
     public override void Interacted(IKitchenWieldableParent player)
@@ -24,9 +24,9 @@ public class CuttingCounter : BaseCounter
         else Debug.Log("No Ingredients on Counter");
     }
 
-    internal void AttemptRecipes(RecipeSO[] availableRecipesArr)
+    internal void AttemptRecipes(CuttingRecipeSO[] availableRecipesArr)
     {
-        foreach (RecipeSO recipe in availableRecipesArr)
+        foreach (CuttingRecipeSO recipe in availableRecipesArr)
         {
             if (KitchenWieldableHeld._kitchenWieldableSO == recipe.inputs[0])
             {
@@ -44,8 +44,6 @@ public class CuttingCounter : BaseCounter
         Destroy(KitchenWieldableHeld.gameObject);
         GameObject newItem = Instantiate(output._gameObject, SpawnPoint);
         newItem.transform.localPosition = Vector3.zero;
-        Debug.Log(newItem.GetComponent<KitchenWieldable>());
         KitchenWieldableHeld = newItem.GetComponent<KitchenWieldable>();
-        Debug.Log(KitchenWieldableHeld);
     }
 }

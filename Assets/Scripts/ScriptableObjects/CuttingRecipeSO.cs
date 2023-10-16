@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class RecipeSO : ScriptableObject
+public class CuttingRecipeSO : ScriptableObject
 {
     public KitchenWieldableSO[] inputs;
     public KitchenWieldableSO output;

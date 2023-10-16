@@ -2,6 +2,18 @@ using UnityEngine;
 
 public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
 {
+    private void Start()
+    {
+        try
+        {
+            if (!SpawnPoint && transform.GetChild(0).name == "SpawnPoint")
+            {
+                SpawnPoint = transform.GetChild(0);
+                Debug.Log("Forgot to setup counter SpawnPoint in inspector, setup automatically");
+            }
+        }
+        catch { Debug.Log("Counter Spawn Point Set Incorrectly"); }
+    }
     public virtual void Interacted(IKitchenWieldableParent player)
     {
         SwapWieldablesWith(player);
