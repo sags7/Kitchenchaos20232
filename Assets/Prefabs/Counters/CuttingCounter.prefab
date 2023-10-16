@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b143f3a203b21141907ad3dd2c192f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cuttingCounter: {fileID: 7826946959701001107}
+  _progressCounter: {fileID: 7826946959701001107}
   _barImage: {fileID: 7969084420470441990}
   _animator: {fileID: 7462399819401819472}
 --- !u!114 &5823745823568207377
@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2119b208ebb204c87de5cdcc2d9252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mode: 0
 --- !u!1 &8304245906511590754
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bc25157c3684c45aec48e4fe2d5c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <KitchenWieldableHeld>k__BackingField: {fileID: 0}
   <SpawnPoint>k__BackingField: {fileID: 8842751843924492424}
   _availableRecipesArr:
   - {fileID: 11400000, guid: 41ae9ad0febc9984599a5713c2bb28ba, type: 2}

@@ -1,27 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProgressBarUI : MonoBehaviour
+public class FryingProgressBarUI : MonoBehaviour
 {
     [SerializeField] private BaseCounter _progressCounter;
     [SerializeField] private Image _barImage;
-    [SerializeField] private Animator _animator;
     private const string _CUT = "Cut";
 
     private void Start()
     {
         _barImage.fillAmount = 0f;
-        _progressCounter.GetComponent<CuttingCounter>().OnProgressChange += OnProgressChangeAction;
+        _progressCounter.GetComponent<FryingCounter>().OnProgressChange += OnProgressChangeAction;
     }
     private void Update()
     {
         if (!_progressCounter.KitchenWieldableHeld) Hide();
     }
-    private void OnProgressChangeAction(object sender, CuttingCounter.OnCuttingProgressChangeEventArgs e)
+    private void OnProgressChangeAction(object sender, FryingCounter.OnFryingProgressChangeEventArgs e)
     {
         if (e.progress != 0)
         {
-            _animator.SetTrigger(_CUT);
             Show();
         }
         else Hide();

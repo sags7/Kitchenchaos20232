@@ -4,6 +4,11 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
 {
     private void Start()
     {
+        TrySetupSpawnPoint();
+    }
+
+    private void TrySetupSpawnPoint()
+    {
         try
         {
             if (!SpawnPoint && transform.GetChild(0).name == "SpawnPoint")
@@ -14,6 +19,7 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
         }
         catch { Debug.Log("Counter Spawn Point Set Incorrectly"); }
     }
+
     public virtual void Interacted(IKitchenWieldableParent player)
     {
         SwapWieldablesWith(player);
@@ -24,7 +30,7 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
     }
 
     //--------------------------IKitchenWieldable implementation-----------------------------------------
-    public KitchenWieldable KitchenWieldableHeld { get; set; }
+    [field: SerializeField] public KitchenWieldable KitchenWieldableHeld { get; set; }
     [field: SerializeField] public Transform SpawnPoint { get; set; }
 
     public void SwapWieldablesWith(IKitchenWieldableParent player)

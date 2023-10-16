@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class CuttingCounter : BaseCounter
 {
-    public event EventHandler<OnCuttingProgressChangeEventArgs> OnCuttingProgressChange;
-    public class OnCuttingProgressChangeEventArgs : EventArgs { public float cuttingProgress; }
+    public event EventHandler<OnCuttingProgressChangeEventArgs> OnProgressChange;
+    public class OnCuttingProgressChangeEventArgs : EventArgs { public float progress; }
     [SerializeField] private CuttingRecipeSO[] _availableRecipesArr;
-    private int _cuttingProgress;
+    private int _progress;
 
     public override void Interacted(IKitchenWieldableParent player)
     {
         SwapWieldablesWith(player);
-        _cuttingProgress = 0;
-        OnCuttingProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { cuttingProgress = _cuttingProgress });
+        _progress = 0;
+        OnProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { progress = _progress });
     }
     public override void AlternativeInteracted(IKitchenWieldableParent player)
     {
@@ -30,10 +30,13 @@ public class CuttingCounter : BaseCounter
         {
             if (KitchenWieldableHeld._kitchenWieldableSO == recipe.inputs[0])
             {
-                _cuttingProgress++;
-                OnCuttingProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { cuttingProgress = (float)_cuttingProgress / recipe.cuttingNeeded });
-                if (_cuttingProgress >= recipe.cuttingNeeded)
+                _progress++;
+                OnProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { progress = (float)_progress / recipe.cuttingNeeded });
+                if (_progress >= recipe.cuttingNeeded)
+                {
                     TransmuteTo(recipe.output);
+                    _progress = 0;
+                }
                 //CURRENT IMPLEMENTATION ONLY WORKS WITH ONE INPUT INGREDIENT AND IS HARDCODED TO BE THE FIRST ON THE ARRAY!!!
             }
         };
