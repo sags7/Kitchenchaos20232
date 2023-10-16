@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
 
-public class CuttingCounter : BaseCounter
+public class CuttingCounter : BaseCounter, IHasProgress
 {
-    public event EventHandler<OnCuttingProgressChangeEventArgs> OnProgressChange;
-    public class OnCuttingProgressChangeEventArgs : EventArgs { public float progress; }
+    public event EventHandler<IHasProgress.OnProgressChangeEventArgs> OnProgressChange;
     [SerializeField] private CuttingRecipeSO[] _availableRecipesArr;
     private int _progress;
 
@@ -12,7 +11,7 @@ public class CuttingCounter : BaseCounter
     {
         SwapWieldablesWith(player);
         _progress = 0;
-        OnProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { progress = _progress });
+        OnProgressChange?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs { progress = _progress });
     }
     public override void AlternativeInteracted(IKitchenWieldableParent player)
     {
@@ -31,7 +30,7 @@ public class CuttingCounter : BaseCounter
             if (KitchenWieldableHeld._kitchenWieldableSO == recipe.inputs[0])
             {
                 _progress++;
-                OnProgressChange?.Invoke(this, new OnCuttingProgressChangeEventArgs { progress = (float)_progress / recipe.cuttingNeeded });
+                OnProgressChange?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs { progress = (float)_progress / recipe.cuttingNeeded });
                 if (_progress >= recipe.cuttingNeeded)
                 {
                     TransmuteTo(recipe.output);

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CuttingProgressBarUI : MonoBehaviour
+public class ProgressBarUI : MonoBehaviour
 {
     [SerializeField] private BaseCounter _progressCounter;
     [SerializeField] private Image _barImage;

@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
 
-public class FryingCounter : BaseCounter
+public class FryingCounter : BaseCounter, IHasProgress
 {
-    public event EventHandler<OnFryingProgressChangeEventArgs> OnProgressChange;
-    public class OnFryingProgressChangeEventArgs : EventArgs { public float progress; }
+    public event EventHandler<IHasProgress.OnProgressChangeEventArgs> OnProgressChange;
     [SerializeField] private FryingRecipeSO[] _availableRecipesArr;
     private float _progress;
 
@@ -12,7 +11,7 @@ public class FryingCounter : BaseCounter
     {
         SwapWieldablesWith(player);
         _progress = 0;
-        OnProgressChange?.Invoke(this, new OnFryingProgressChangeEventArgs { progress = _progress });
+        OnProgressChange?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs { progress = _progress });
     }
     public override void AlternativeInteracted(IKitchenWieldableParent player)
     {
@@ -24,7 +23,7 @@ public class FryingCounter : BaseCounter
         else if (KitchenWieldableHeld && _progress != 0)
         {
             _progress = 0;
-            OnProgressChange?.Invoke(this, new OnFryingProgressChangeEventArgs { progress = _progress });
+            OnProgressChange?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs { progress = _progress });
         }
         else Debug.Log("No Ingredients on Counter");
     }
@@ -41,7 +40,7 @@ public class FryingCounter : BaseCounter
             if (KitchenWieldableHeld._kitchenWieldableSO == recipe.inputs[0])
             {
                 _progress += Time.deltaTime;
-                OnProgressChange?.Invoke(this, new OnFryingProgressChangeEventArgs { progress = (float)_progress / recipe.FryingNeeded });
+                OnProgressChange?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs { progress = (float)_progress / recipe.FryingNeeded });
                 if (_progress >= recipe.FryingNeeded)
                 {
                     TransmuteTo(recipe.output);

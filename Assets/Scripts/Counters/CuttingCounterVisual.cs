@@ -11,7 +11,7 @@ public class CuttingCounterVisual : MonoBehaviour
     {
         _progressCounter.GetComponent<CuttingCounter>().OnProgressChange += OnProgressChangeAction;
     }
-    private void OnProgressChangeAction(object sender, CuttingCounter.OnCuttingProgressChangeEventArgs e)
+    private void OnProgressChangeAction(object sender, IHasProgress.OnProgressChangeEventArgs e)
     {
         if (e.progress != 0)
         {

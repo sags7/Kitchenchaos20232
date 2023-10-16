@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,11 +12,7 @@ public class FryingProgressBarUI : MonoBehaviour
         _barImage.fillAmount = 0f;
         _progressCounter.GetComponent<FryingCounter>().OnProgressChange += OnProgressChangeAction;
     }
-    private void Update()
-    {
-        if (!_progressCounter.KitchenWieldableHeld) Hide();
-    }
-    private void OnProgressChangeAction(object sender, FryingCounter.OnFryingProgressChangeEventArgs e)
+    private void OnProgressChangeAction(object sender, IHasProgress.OnProgressChangeEventArgs e)
     {
         if (e.progress != 0)
         {
@@ -24,6 +21,12 @@ public class FryingProgressBarUI : MonoBehaviour
         else Hide();
         _barImage.fillAmount = e.progress;
     }
+
+    private void Update()
+    {
+        if (!_progressCounter.KitchenWieldableHeld) Hide();
+    }
+
     private void Show() => gameObject.SetActive(true);
     private void Hide() => gameObject.SetActive(false);
 }
