@@ -5,8 +5,6 @@ public class ProgressBarUI : MonoBehaviour
 {
     [SerializeField] private BaseCounter _progressCounter;
     [SerializeField] private Image _barImage;
-    [SerializeField] private Animator _animator;
-    private const string _CUT = "Cut";
 
     private void Start()
     {
@@ -21,7 +19,6 @@ public class ProgressBarUI : MonoBehaviour
     {
         if (e.progress != 0)
         {
-            _animator.SetTrigger(_CUT);
             Show();
         }
         else Hide();

@@ -5,7 +5,6 @@ public class FryingProgressBarUI : MonoBehaviour
 {
     [SerializeField] private BaseCounter _progressCounter;
     [SerializeField] private Image _barImage;
-    private const string _CUT = "Cut";
 
     private void Start()
     {
