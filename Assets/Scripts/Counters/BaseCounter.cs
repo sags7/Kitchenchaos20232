@@ -22,7 +22,11 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
 
     public virtual void Interacted(IKitchenWieldableParent player)
     {
+        //if(!KitchenWieldableHeld)
         SwapWieldablesWith(player);
+        //else if (kitchenWieldableHeld.CanHold == true && player.KitchenWieldableHeld)
+        //{StackPlayerItem on my item}
+        //else SwapWieldablesWith(player)
     }
     public virtual void AlternativeInteracted(IKitchenWieldableParent player)
     {
