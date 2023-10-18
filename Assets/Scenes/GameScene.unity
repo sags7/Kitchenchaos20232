@@ -1445,6 +1445,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DishSpawnerCounter
       objectReference: {fileID: 0}
+    - target: {fileID: 654640875295980859, guid: 3376913e4390a0d41bf4a54d679e0736,
+        type: 3}
+      propertyPath: _spawnDelay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2530598313292581472, guid: 3376913e4390a0d41bf4a54d679e0736,
         type: 3}
       propertyPath: m_RootOrder

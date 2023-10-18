@@ -167,12 +167,12 @@ PrefabInstance:
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
@@ -182,27 +182,27 @@ PrefabInstance:
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 0.7071062
       objectReference: {fileID: 0}
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: -0.7071075
       objectReference: {fileID: 0}
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
@@ -212,7 +212,7 @@ PrefabInstance:
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 7204039111081972788, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
         type: 3}
@@ -257,8 +257,7 @@ MonoBehaviour:
   <KitchenWieldableHeld>k__BackingField: {fileID: 0}
   <SpawnPoint>k__BackingField: {fileID: 1704967650349922176}
   _maxPlates: 4
-  _currentPlates: []
-  _spawnDelay: 2
+  _spawnDelay: 1
   _plate: {fileID: 4612639866897577413, guid: 0b089e8ea4fd7be4086686c9f2add4eb, type: 3}
 --- !u!4 &1704967650349922176 stripped
 Transform:
