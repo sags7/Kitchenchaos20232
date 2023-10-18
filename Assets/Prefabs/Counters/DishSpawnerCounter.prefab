@@ -256,6 +256,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <KitchenWieldableHeld>k__BackingField: {fileID: 0}
   <SpawnPoint>k__BackingField: {fileID: 1704967650349922176}
+  _maxPlates: 4
+  _currentPlates: []
+  _spawnDelay: 2
+  _plate: {fileID: 4612639866897577413, guid: 0b089e8ea4fd7be4086686c9f2add4eb, type: 3}
 --- !u!4 &1704967650349922176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6291209470113327572, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
