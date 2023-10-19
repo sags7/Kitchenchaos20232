@@ -17,6 +17,11 @@ public class DishSpawnerCounter : BaseCounter
     }
     private void Update()
     {
+        SpawnerTimer();
+    }
+
+    private void SpawnerTimer()
+    {
         if (_currentPlates.Count < _maxPlates)
         {
             _SpawnTimer += Time.deltaTime;
@@ -26,6 +31,7 @@ public class DishSpawnerCounter : BaseCounter
                 AddToList(SpawnKitchenWieldable());
             }
         }
+
     }
     public override void Interacted(IKitchenWieldableParent player)
     {

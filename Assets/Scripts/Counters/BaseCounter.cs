@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
@@ -29,32 +30,35 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
     protected bool TryPopulatePlate(IKitchenWieldableParent player)
     {
 
-        if (TryGetPlate(player.KitchenWieldableHeld, out Plate playerPlate) && KitchenWieldableHeld ? !TryGetPlate(KitchenWieldableHeld, out _) : false)
+        if (TryIsHolding<Plate>(player.KitchenWieldableHeld, out Plate playerPlate) && KitchenWieldableHeld ? !TryIsHolding<Plate>(KitchenWieldableHeld, out _) : false)
         {
             //Debug.Log("Player is holding a plate AND there is something other than a plate in the counter");
             playerPlate.PutIntoPlate(KitchenWieldableHeld);
             return true;
         }
-        else if (TryGetPlate(KitchenWieldableHeld, out Plate counterPlate) && player.KitchenWieldableHeld ? !TryGetPlate(player.KitchenWieldableHeld, out _) : false)
+        else if (TryIsHolding<Plate>(KitchenWieldableHeld, out Plate counterPlate) && player.KitchenWieldableHeld ? !TryIsHolding<Plate>(player.KitchenWieldableHeld, out _) : false)
         {
             //Debug.Log("There is a plate in the counter AND Player is holding something other than a plate");
             counterPlate.PutIntoPlate(player.KitchenWieldableHeld);
             return true;
         }
         else return false;
+
     }
 
-    private bool TryGetPlate(KitchenWieldable kitchenWieldable, out Plate plate)
+
+
+    public static bool TryIsHolding<T>(KitchenWieldable kitchenWieldable, out T t) where T : KitchenWieldable //ED: this last part it called a Type Class Constraint
     {
-        if (kitchenWieldable is Plate)
+        if (kitchenWieldable is T)
         {
-            plate = kitchenWieldable as Plate;
+            t = kitchenWieldable as T;
             return true;
         }
         else
         {
-            plate = null;
-            return plate; //an object cast to a bool depends on in existing or not? A: you can return an object of any type from a method that returns bool. This is because the compiler will automatically convert the object to a bool value before returning it.
+            t = null;
+            return t; //Q: does an object cast to a bool depend on in existing or not? A: you can return an object of any type from a method that returns bool. This is because the compiler will automatically convert the object to a bool value before returning it.
         }
     }
 
