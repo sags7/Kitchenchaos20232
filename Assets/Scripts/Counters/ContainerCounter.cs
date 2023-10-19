@@ -10,7 +10,7 @@ public class ContainerCounter : BaseCounter
     {
         if (!KitchenWieldableHeld && !player.KitchenWieldableHeld)
             SpawnItem(player);
-        else SwapWieldablesWith(player);
+        else if (!TryPopulatePlate(player)) SwapWieldablesWith(player);
     }
 
     private void SpawnItem(IKitchenWieldableParent parent)
