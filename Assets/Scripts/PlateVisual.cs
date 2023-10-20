@@ -42,7 +42,7 @@ public class PlateVisual : MonoBehaviour
         foreach (KitchenWieldableSO item in e.itemsList)
         {
             GameObject newItem = Instantiate(item._gameObject, transform.up, Quaternion.identity, transform);
-            newItem.transform.localPosition = Vector3.zero;
+            newItem.transform.localPosition = Vector3.zero + new Vector3(0, centerOffsetY, 0);
             newItem.transform.localScale -= new Vector3(scaleFactor, scaleFactor, scaleFactor);
             _visualItemsList.Add(newItem);
         }

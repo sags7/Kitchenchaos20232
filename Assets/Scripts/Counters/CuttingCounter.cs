@@ -15,12 +15,11 @@ public class CuttingCounter : BaseCounter, IHasProgress
     }
     public override void AlternativeInteracted(IKitchenWieldableParent player)
     {
-        if (KitchenWieldableHeld)
+        if (KitchenWieldableHeld && !player.KitchenWieldableHeld)
         {
             try { AttemptRecipes(_availableRecipesArr); }
             catch { Debug.Log("Counter has no recipes assigned!"); }
         }
-        else Debug.Log("No Ingredients on Counter");
     }
 
     internal void AttemptRecipes(CuttingRecipeSO[] availableRecipesArr)

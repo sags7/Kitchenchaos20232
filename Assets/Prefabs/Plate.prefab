@@ -57,6 +57,8 @@ MonoBehaviour:
   _acceptableRecipes:
   - {fileID: 11400000, guid: 48ef0cb14b6b7cb44a5edb5312d00822, type: 2}
   - {fileID: 11400000, guid: e5c29c6e68f14f941b3610c5636b1467, type: 2}
+  - {fileID: 11400000, guid: 286c1ac8d52ac01408dfb6c29dc56ec1, type: 2}
+  _finishedRecipe: {fileID: 0}
 --- !u!1 &8230168719399031897
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,8 +186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plate: {fileID: 7842961214008403765}
-  _visualItems:
-  - {fileID: 4344106735502508677, guid: 732b3a96140051749b266252f8be6c4f, type: 3}
 --- !u!4 &2503111059944922205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3812876574508226176, guid: c0c9afd619b40914a8f625c0535e2284,
