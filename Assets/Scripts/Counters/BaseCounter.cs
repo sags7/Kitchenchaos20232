@@ -24,43 +24,16 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
 
     public virtual void Interacted(IKitchenWieldableParent player)
     {
-        if (!TryPopulatePlate(player)) SwapWieldablesWith(player);
+        PopulatePlateOrSwap(player);
     }
 
-    protected bool TryPopulatePlate(IKitchenWieldableParent player)
+    protected void PopulatePlateOrSwap(IKitchenWieldableParent player)
     {
-
-        if (TryIsHolding<Plate>(player.KitchenWieldableHeld, out Plate playerPlate) && KitchenWieldableHeld ? !TryIsHolding<Plate>(KitchenWieldableHeld, out _) : false)
-        {
-            //Debug.Log("Player is holding a plate AND there is something other than a plate in the counter");
-            playerPlate.PutIntoPlate(KitchenWieldableHeld);
-            return true;
-        }
-        else if (TryIsHolding<Plate>(KitchenWieldableHeld, out Plate counterPlate) && player.KitchenWieldableHeld ? !TryIsHolding<Plate>(player.KitchenWieldableHeld, out _) : false)
-        {
-            //Debug.Log("There is a plate in the counter AND Player is holding something other than a plate");
-            counterPlate.PutIntoPlate(player.KitchenWieldableHeld);
-            return true;
-        }
-        else return false;
-
+        if (!TryPopulatePlate(player))
+            if (!player.TryPopulatePlate(this))
+                SwapWieldablesWith(player);
     }
 
-
-
-    public static bool TryIsHolding<T>(KitchenWieldable kitchenWieldable, out T t) where T : KitchenWieldable //ED: this last part it called a Type Class Constraint
-    {
-        if (kitchenWieldable is T)
-        {
-            t = kitchenWieldable as T;
-            return true;
-        }
-        else
-        {
-            t = null;
-            return t; //Q: does an object cast to a bool depend on in existing or not? A: you can return an object of any type from a method that returns bool. This is because the compiler will automatically convert the object to a bool value before returning it.
-        }
-    }
 
     public virtual void AlternativeInteracted(IKitchenWieldableParent player)
     {
@@ -71,13 +44,24 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
     [field: SerializeField] public KitchenWieldable KitchenWieldableHeld { get; set; }
     [field: SerializeField] public Transform SpawnPoint { get; set; }
 
-    public void SwapWieldablesWith(IKitchenWieldableParent player)
+    public void SwapWieldablesWith(IKitchenWieldableParent newParent)
     {
-        KitchenWieldable playerItem = player.KitchenWieldableHeld ? player.KitchenWieldableHeld : null;
+        KitchenWieldable playerItem = newParent.KitchenWieldableHeld ? newParent.KitchenWieldableHeld : null;
         KitchenWieldable counterItem = KitchenWieldableHeld ? KitchenWieldableHeld : null;
         if (playerItem) playerItem.Set_ParentHoldingMe(this);
         KitchenWieldableHeld = playerItem;
-        if (counterItem) counterItem.Set_ParentHoldingMe(player);
-        player.KitchenWieldableHeld = counterItem;
+        if (counterItem) counterItem.Set_ParentHoldingMe(newParent);
+        newParent.KitchenWieldableHeld = counterItem;
+    }
+
+    public bool TryPopulatePlate(IKitchenWieldableParent otherParent)
+    {
+        if (IKitchenWieldableParent.TryIsHolding<Plate>(otherParent.KitchenWieldableHeld, out Plate otherParentsPlate)
+        && KitchenWieldableHeld ? !IKitchenWieldableParent.TryIsHolding<Plate>(KitchenWieldableHeld, out _) : false)
+        {
+            //Debug.Log("otherParent is holding a plate AND there is something other than a plate in me (this)");
+            return otherParentsPlate.TryPutIntoPlate(KitchenWieldableHeld) ? true : false;
+        }
+        else return false;
     }
 }

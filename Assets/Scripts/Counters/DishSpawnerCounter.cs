@@ -37,7 +37,7 @@ public class DishSpawnerCounter : BaseCounter
     {
         if (!player.KitchenWieldableHeld && _currentPlates.Count > 0)
         {
-            SwapWieldablesWith(player);
+            PopulatePlateOrSwap(player);
             RemoveLastFromList();
             if (_currentPlates.Count != 0) KitchenWieldableHeld = _currentPlates[^1];
             else KitchenWieldableHeld = null;

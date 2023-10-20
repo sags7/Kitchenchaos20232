@@ -10,13 +10,15 @@ public class Plate : KitchenWieldable
     {
         _heldItems = new List<KitchenWieldableSO>();
     }
-    public void PutIntoPlate(KitchenWieldable kitchenWieldable)
+    public bool TryPutIntoPlate(KitchenWieldable kitchenWieldable)
     {
         if (_acceptableItems.Contains(kitchenWieldable._kitchenWieldableSO))
         {
             _heldItems.Add(kitchenWieldable._kitchenWieldableSO);
             kitchenWieldable.DestroySelf();
+            return true;
         }
+        else return false;
     }
 
 

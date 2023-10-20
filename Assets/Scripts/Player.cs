@@ -126,4 +126,15 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
         if (playerItem) playerItem.Set_ParentHoldingMe(newParent);
         newParent.KitchenWieldableHeld = playerItem;
     }
+
+    public bool TryPopulatePlate(IKitchenWieldableParent otherParent)
+    {
+        if (IKitchenWieldableParent.TryIsHolding<Plate>(otherParent.KitchenWieldableHeld, out Plate otherParentsPlate)
+        && KitchenWieldableHeld ? !IKitchenWieldableParent.TryIsHolding<Plate>(KitchenWieldableHeld, out _) : false)
+        {
+            //Debug.Log("otherParent is holding a plate AND there is something other than a plate in me (this)");
+            return otherParentsPlate.TryPutIntoPlate(KitchenWieldableHeld) ? true : false;
+        }
+        else return false;
+    }
 }

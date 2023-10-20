@@ -9,7 +9,7 @@ public class FryingCounter : BaseCounter, IHasProgress
 
     public override void Interacted(IKitchenWieldableParent player)
     {
-        if (!TryPopulatePlate(player)) SwapWieldablesWith(player);
+        PopulatePlateOrSwap(player);
         _progress = 0;
         OnProgressChange?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs { progress = _progress });
     }
