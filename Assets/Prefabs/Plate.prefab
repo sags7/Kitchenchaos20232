@@ -49,11 +49,14 @@ MonoBehaviour:
   _kitchenWieldableSO: {fileID: 11400000, guid: 35b480d0bdd21fe4fb83654d2917d7cd,
     type: 2}
   _acceptableItems:
-  - {fileID: 11400000, guid: d7d16050af0d77c4197a7d0cd79ea723, type: 2}
   - {fileID: 11400000, guid: 0d85e8320241b3148a7f151b6e670c9f, type: 2}
+  - {fileID: 11400000, guid: d7d16050af0d77c4197a7d0cd79ea723, type: 2}
   - {fileID: 11400000, guid: 6950c07db41a1514888740b39831dc43, type: 2}
   - {fileID: 11400000, guid: 671a6c86898abab41bc827f13afa8d7a, type: 2}
   - {fileID: 11400000, guid: 68ba74139d5436e44867c42f52cdf3ab, type: 2}
+  _acceptableRecipes:
+  - {fileID: 11400000, guid: 48ef0cb14b6b7cb44a5edb5312d00822, type: 2}
+  - {fileID: 11400000, guid: e5c29c6e68f14f941b3610c5636b1467, type: 2}
 --- !u!1 &8230168719399031897
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _plate: {fileID: 7842961214008403765}
+  _visualItems:
+  - {fileID: 4344106735502508677, guid: 732b3a96140051749b266252f8be6c4f, type: 3}
 --- !u!4 &2503111059944922205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3812876574508226176, guid: c0c9afd619b40914a8f625c0535e2284,

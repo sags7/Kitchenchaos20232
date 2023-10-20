@@ -19,7 +19,7 @@ public class KitchenWieldable : MonoBehaviour
     public void DestroySelf()
     {
         try { _parentHoldingMe.KitchenWieldableHeld = null; }
-        catch { Debug.Log("KitchenWieldable has no parent counter"); };
+        catch { }// Debug.Log("KitchenWieldable has no parent counter"); };
         Destroy(transform.gameObject);
     }
 
