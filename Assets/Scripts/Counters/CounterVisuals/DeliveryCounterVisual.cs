@@ -1,22 +1,13 @@
-using System;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
-public class SelectedContainerCounterVisual : MonoBehaviour
+public class DeliveryCounterVisual : MonoBehaviour
 {
     [SerializeField] private BaseCounter _thisCounter;
     [SerializeField] private GameObject[] _visualArr;
-    private const string OPEN_CLOSE = "OpenClose";
 
     void Start()
     {
         Player.Instance.OnSelectedCounterChange += Player_OnSelectedCounterChange;
-        GetComponentInParent<ContainerCounter>().OnSpawnedItem += OnSpawnedItemAction;
-    }
-
-    private void OnSpawnedItemAction(object sender, EventArgs e)
-    {
-        GetComponent<Animator>().SetTrigger(OPEN_CLOSE);
     }
 
     private void Player_OnSelectedCounterChange(object sender, Player.OnSelectedCounterChangeEventArgs e)

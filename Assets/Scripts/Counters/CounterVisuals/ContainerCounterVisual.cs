@@ -1,13 +1,21 @@
+using System;
 using UnityEngine;
 
-public class SelectedCounterVisual : MonoBehaviour
+public class ContainerCounterVisual : MonoBehaviour
 {
     [SerializeField] private BaseCounter _thisCounter;
     [SerializeField] private GameObject[] _visualArr;
+    private const string OPEN_CLOSE = "OpenClose";
 
     void Start()
     {
         Player.Instance.OnSelectedCounterChange += Player_OnSelectedCounterChange;
+        GetComponentInParent<ContainerCounter>().OnSpawnedItem += OnSpawnedItemAction;
+    }
+
+    private void OnSpawnedItemAction(object sender, EventArgs e)
+    {
+        GetComponent<Animator>().SetTrigger(OPEN_CLOSE);
     }
 
     private void Player_OnSelectedCounterChange(object sender, Player.OnSelectedCounterChangeEventArgs e)

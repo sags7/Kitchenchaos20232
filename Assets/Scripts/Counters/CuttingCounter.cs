@@ -26,7 +26,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
     {
         foreach (CuttingRecipeSO recipe in availableRecipesArr)
         {
-            if (KitchenWieldableHeld._kitchenWieldableSO == recipe.inputs[0])
+            if (KitchenWieldableHeld._kitchenWieldableSO == recipe.input)
             {
                 _progress++;
                 OnProgressChange?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs { progress = (float)_progress / recipe.cuttingNeeded });
@@ -35,7 +35,6 @@ public class CuttingCounter : BaseCounter, IHasProgress
                     TransmuteTo(recipe.output);
                     _progress = 0;
                 }
-                //CURRENT IMPLEMENTATION ONLY WORKS WITH ONE INPUT INGREDIENT AND IS HARDCODED TO BE THE FIRST ON THE ARRAY!!!
             }
         };
     }
