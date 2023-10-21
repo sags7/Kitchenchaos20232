@@ -38,7 +38,7 @@ public class PlateVisual : MonoBehaviour
 
         ResetVisual();
 
-        //instantiate every item on the items list i get from the EventCaller
+        //instantiate every item on the items list i get from the Event Caller
         foreach (KitchenWieldableSO item in e.itemsList)
         {
             GameObject newItem = Instantiate(item._gameObject, transform.up, Quaternion.identity, transform);
@@ -64,7 +64,7 @@ public class PlateVisual : MonoBehaviour
         foreach (GameObject go in _completeDishVisualItemsList) Destroy(go);
         _completeDishVisualItemsList?.Clear();
 
-        //remove all visuals for the _visualItemsList before redrawing it all
+        ///Remove all visuals for the _visualItemsList
         foreach (GameObject go in _visualItemsList) Destroy(go);
         _visualItemsList?.Clear();
     }

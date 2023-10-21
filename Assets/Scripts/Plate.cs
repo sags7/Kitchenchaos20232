@@ -53,17 +53,19 @@ public class Plate : KitchenWieldable
         }
     }
 
+    //Creates a list of requirements in the DishRecipeSO in the order that items appear in the recipe (an Ingredient Requirement is a struct that contains an ingredient and an amount)
     private List<IngredientRequirement> ExtractListOfRequirements(List<KitchenWieldableSO> ingredientList)
     {
         List<IngredientRequirement> OutputList = new List<IngredientRequirement>();
         foreach (KitchenWieldableSO item in _acceptableItems)
         {
-            if (CountItems(ingredientList, item) != 0)
-                OutputList.Add(new IngredientRequirement { Ingredient = item, Amount = CountItems(ingredientList, item) });
+            if (CountItems(item, ingredientList) != 0)
+                OutputList.Add(new IngredientRequirement { Ingredient = item, Amount = CountItems(item, ingredientList) });
         }
         return OutputList;
     }
 
+    //Organizes the List of requirements in the DishRecipeSO in the order that items appear in the recipe
     private List<IngredientRequirement> ExtractListOfRequirements(DishRecipeSO recipe)
     {
         List<IngredientRequirement> OutputList = new List<IngredientRequirement>();
@@ -79,11 +81,11 @@ public class Plate : KitchenWieldable
     }
 
 
-    private int CountItems(List<KitchenWieldableSO> itemsList, KitchenWieldableSO item)
+    private int CountItems<T>(T item, List<T> itemsList)
     {
         int amount = 0;
-        foreach (KitchenWieldableSO so in itemsList)
-            if (so == item) amount++;
+        foreach (T wieldable in itemsList)
+            if (wieldable.Equals(item)) amount++;
         return amount;
     }
 }
