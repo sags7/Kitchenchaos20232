@@ -13,13 +13,9 @@ public class Plate : KitchenWieldable
 
     public event EventHandler<OnHeldItemsChangeEventArgs> OnHeldItemsChange;
     public class OnHeldItemsChangeEventArgs : EventArgs { public List<KitchenWieldableSO> itemsList; }
-
-    private List<KitchenWieldableSO> _heldItems;
-
     public DishRecipeSO _finishedRecipe;
-    public const int _MAX_ITEMS = 10;
-
-
+    private const int _MAX_ITEMS = 9;
+    private List<KitchenWieldableSO> _heldItems;
 
 
     private void Start()
@@ -80,7 +76,7 @@ public class Plate : KitchenWieldable
         return OutputList;
     }
 
-
+    //counts the amount of items of T in a List of T
     private int CountItems<T>(T item, List<T> itemsList)
     {
         int amount = 0;
