@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class Plate : KitchenWieldable
 {
-    [SerializeField] private List<KitchenWieldableSO> _acceptableItems;
-    [SerializeField] private List<DishRecipeSO> _acceptableRecipes;
-
     public event EventHandler<OnDishCompleteEventArgs> OnDishComplete;
     public class OnDishCompleteEventArgs : EventArgs { public List<GameObject> CompleteDishVisualsList; }
-
     public event EventHandler<OnHeldItemsChangeEventArgs> OnHeldItemsChange;
     public class OnHeldItemsChangeEventArgs : EventArgs { public List<KitchenWieldableSO> itemsList; }
-    public DishRecipeSO _finishedRecipe;
+    public DishRecipeSO _finishedRecipe; //review later if needed
+    [SerializeField] private List<KitchenWieldableSO> _acceptableItems;
+    [SerializeField] private List<DishRecipeSO> _acceptableRecipes;
     private const int _MAX_ITEMS = 9;
-    private List<KitchenWieldableSO> _heldItems;
+    public List<KitchenWieldableSO> _heldItems;
 
 
     private void Start()
@@ -50,7 +48,7 @@ public class Plate : KitchenWieldable
     }
 
     //Creates a list of requirements in the DishRecipeSO in the order that items appear in the recipe (an Ingredient Requirement is a struct that contains an ingredient and an amount)
-    private List<IngredientRequirement> ExtractListOfRequirements(List<KitchenWieldableSO> ingredientList)
+    public List<IngredientRequirement> ExtractListOfRequirements(List<KitchenWieldableSO> ingredientList)
     {
         List<IngredientRequirement> OutputList = new List<IngredientRequirement>();
         foreach (KitchenWieldableSO item in _acceptableItems)
@@ -62,7 +60,7 @@ public class Plate : KitchenWieldable
     }
 
     //Organizes the List of requirements in the DishRecipeSO in the order that items appear in the recipe
-    private List<IngredientRequirement> ExtractListOfRequirements(DishRecipeSO recipe)
+    public List<IngredientRequirement> ExtractListOfRequirements(DishRecipeSO recipe)
     {
         List<IngredientRequirement> OutputList = new List<IngredientRequirement>();
 
@@ -77,7 +75,7 @@ public class Plate : KitchenWieldable
     }
 
     //counts the amount of items of T in a List of T
-    private int CountItems<T>(T item, List<T> itemsList)
+    public int CountItems<T>(T item, List<T> itemsList)
     {
         int amount = 0;
         foreach (T wieldable in itemsList)

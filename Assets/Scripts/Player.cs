@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IKitchenWieldableParent
 {
+    public event EventHandler<OnSelectedCounterChangeEventArgs> OnSelectedCounterChange;
+    public class OnSelectedCounterChangeEventArgs : EventArgs { public BaseCounter selectedCounter; }
     public static Player Instance { get; private set; }
     [SerializeField] private float _movementSpeed = 10f;
     [SerializeField] private float _rotateSpeed = 10f;
@@ -16,8 +18,6 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
     private Vector2 _inputVector;
     private BaseCounter _selectedCounter;
 
-    public event EventHandler<OnSelectedCounterChangeEventArgs> OnSelectedCounterChange;
-    public class OnSelectedCounterChangeEventArgs : EventArgs { public BaseCounter selectedCounter; }
 
     private void Awake()
     {

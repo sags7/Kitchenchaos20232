@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee4fb1acca9d044a822c7e9daa1a8f4, type: 3}
   m_Name: DoubleCheeseBurger
   m_EditorClassIdentifier: 
+  _orderName: Double Cheeseburger
   NeededIngredients:
   - Ingredient: {fileID: 11400000, guid: 68ba74139d5436e44867c42f52cdf3ab, type: 2}
     Amount: 1

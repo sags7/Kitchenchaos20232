@@ -413,6 +413,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 9152490904531457376}
+    - targetCorrespondingSourceObject: {fileID: 5037688131573719532, guid: 1cc9b4be0b3843143bc632e4c172c1e5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5872229330707357160}
   m_SourcePrefab: {fileID: 100100000, guid: 1cc9b4be0b3843143bc632e4c172c1e5, type: 3}
 --- !u!4 &6573211455903538375 stripped
 Transform:
@@ -446,3 +450,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <KitchenWieldableHeld>k__BackingField: {fileID: 0}
   <SpawnPoint>k__BackingField: {fileID: 8038787033873441063}
+--- !u!114 &5872229330707357160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018503553651599647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d6705fdc25cdfa4dac49ab9796bd2e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deliveryCounter: {fileID: 9152490904531457376}
+  _queuedOrders: []
+  _possibleOrders:
+  - {fileID: 11400000, guid: 286c1ac8d52ac01408dfb6c29dc56ec1, type: 2}
+  - {fileID: 11400000, guid: 48ef0cb14b6b7cb44a5edb5312d00822, type: 2}
+  - {fileID: 11400000, guid: e5c29c6e68f14f941b3610c5636b1467, type: 2}
