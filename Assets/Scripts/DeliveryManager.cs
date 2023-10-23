@@ -51,7 +51,11 @@ public class DeliveryManager : MonoBehaviour
                 break;
             }
         }
-        if (recipeFound == false) Debug.Log("<color=red>Incorrect Recipe!!!</color>");
+        if (recipeFound == false)
+        {
+            Debug.Log("<color=red>Incorrect Recipe!!!</color>");
+            args._plateDelivered.DestroySelf();
+        }
     }
 
     private void Update()

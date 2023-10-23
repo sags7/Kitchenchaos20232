@@ -41,7 +41,15 @@ public class DishSpawnerCounter : BaseCounter
             RemoveLastFromList();
             if (_currentPlates.Count != 0) KitchenWieldableHeld = _currentPlates[^1];
             else KitchenWieldableHeld = null;
-        };
+        }
+        else if (player.KitchenWieldableHeld is KitchenWieldable && !(player.KitchenWieldableHeld is Plate) && _currentPlates.Count > 0)
+        {
+            PopulatePlateOrSwap(player);
+            RemoveLastFromList();
+            SwapWieldablesWith(player);
+            if (_currentPlates.Count != 0) KitchenWieldableHeld = _currentPlates[^1];
+            else KitchenWieldableHeld = null;
+        }
     }
 
     private void RemoveLastFromList()
