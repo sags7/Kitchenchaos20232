@@ -15,7 +15,7 @@ public class DeliveryManagerUI : MonoBehaviour
         DeliveryManager.Instance.OnNewOrderCreated += OnOrderCreatedAction;
         DeliveryManager.Instance.OnOrderDelivered += OnOrderDeliveredAction;
 
-        UpdateVisual();
+        ClearVisual();
     }
 
     private void OnOrderDeliveredAction(object sender, EventArgs e)
@@ -26,6 +26,7 @@ public class DeliveryManagerUI : MonoBehaviour
     {
         UpdateVisual();
     }
+
     private void UpdateVisual()
     {
         ClearVisual();
@@ -42,7 +43,6 @@ public class DeliveryManagerUI : MonoBehaviour
         foreach (Transform child in _container)
         {
             if (child == _recipeTemplate) continue;
-            //Debug.Log("Destroyed" + child);
             Destroy(child.gameObject);
         }
     }

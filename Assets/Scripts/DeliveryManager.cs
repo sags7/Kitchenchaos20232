@@ -6,16 +6,6 @@ using UnityEngine;
 
 public class DeliveryManager : MonoBehaviour
 {
-    public event EventHandler OnNewOrderCreated;
-    public event EventHandler OnOrderDelivered;
-
-    [SerializeField] private DeliveryCounter _deliveryCounter;
-    public List<DishRecipeSO> _queuedOrders { get; private set; }
-    [SerializeField] private List<DishRecipeSO> _possibleOrders;
-    [SerializeField] private float _orderInterval = 5f;
-    private float _newOrderTimer = 0;
-    private int _maxQueue = 5;
-
     private static DeliveryManager _instance;
     public static DeliveryManager Instance
     {
@@ -26,6 +16,16 @@ public class DeliveryManager : MonoBehaviour
         }
         private set { }
     }
+
+    public event EventHandler OnNewOrderCreated;
+    public event EventHandler OnOrderDelivered;
+    [SerializeField] private DeliveryCounter _deliveryCounter;
+    public List<DishRecipeSO> _queuedOrders { get; private set; }
+    [SerializeField] private List<DishRecipeSO> _possibleOrders;
+    [SerializeField] private float _orderInterval = 5f;
+    private float _newOrderTimer = 0;
+    private int _maxQueue = 5;
+
 
     private void Start()
     {
@@ -61,9 +61,8 @@ public class DeliveryManager : MonoBehaviour
         {
             if (recipeFound == false && args._plateDelivered.ExtractListOfRequirements(args._plateDelivered._heldItems).SequenceEqual(args._plateDelivered.ExtractListOfRequirements(_queuedOrders[i])))
             {
-                //Debug.Log("<color=green> Correct Recipe!</color>");
-                OnOrderDelivered?.Invoke(this, EventArgs.Empty);
                 _queuedOrders.RemoveAt(i);
+                OnOrderDelivered?.Invoke(this, EventArgs.Empty);
                 args._plateDelivered.DestroySelf();
                 recipeFound = true;
                 _newOrderTimer = 0;
