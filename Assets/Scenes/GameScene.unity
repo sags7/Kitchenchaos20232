@@ -1119,7 +1119,7 @@ PrefabInstance:
     - target: {fileID: 5872229330707357160, guid: f34d51491598cf34da1c703972508f7f,
         type: 3}
       propertyPath: _orderInterval
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6573211455903538375, guid: f34d51491598cf34da1c703972508f7f,
         type: 3}
@@ -3212,6 +3212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1876925400}
+  - component: {fileID: 1876925401}
   m_Layer: 5
   m_Name: RecipeTemplate
   m_TagString: Untagged
@@ -3241,6 +3242,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &1876925401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876925399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bedb5262729fa594e96a0612e4e663ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deliveryManagerUI: {fileID: 1656899921}
+  _cardName: {fileID: 605684950}
 --- !u!1001 &1918648013
 PrefabInstance:
   m_ObjectHideFlags: 0

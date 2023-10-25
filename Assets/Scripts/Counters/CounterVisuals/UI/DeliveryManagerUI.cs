@@ -10,16 +10,8 @@ public class DeliveryManagerUI : MonoBehaviour
     [SerializeField] public Transform _container;
     [SerializeField] public Transform _recipeTemplate;
 
-    // private void Awake()
-    // {
-
-    //     DeliveryManager.Instance.OnNewOrderCreated += OnOrderCreatedAction;
-    //     DeliveryManager.Instance.OnOrderDelivered += OnOrderDeliveredAction;
-    //     Debug.Log("Beejeezus");
-    // }
-    private async void Start()
+    private void Start()
     {
-        await Task.Delay(100);
         DeliveryManager.Instance.OnNewOrderCreated += OnOrderCreatedAction;
         DeliveryManager.Instance.OnOrderDelivered += OnOrderDeliveredAction;
 
@@ -36,15 +28,22 @@ public class DeliveryManagerUI : MonoBehaviour
     }
     private void UpdateVisual()
     {
-        foreach (Transform child in _container)
-        {
-            if (child == _recipeTemplate) continue;
-            Destroy(child.gameObject);
-        }
+        ClearVisual();
         foreach (DishRecipeSO order in DeliveryManager.Instance._queuedOrders)
         {
             Transform newRecipe = Instantiate(_recipeTemplate, _container);
             newRecipe.gameObject.SetActive(true);
+            newRecipe.GetComponent<RecipeCardUI>().UpdateName(order);
+        }
+    }
+
+    private void ClearVisual()
+    {
+        foreach (Transform child in _container)
+        {
+            if (child == _recipeTemplate) continue;
+            //Debug.Log("Destroyed" + child);
+            Destroy(child.gameObject);
         }
     }
 }

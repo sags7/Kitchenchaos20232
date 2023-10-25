@@ -16,11 +16,20 @@ public class DeliveryManager : MonoBehaviour
     private float _newOrderTimer = 0;
     private int _maxQueue = 5;
 
-    public static DeliveryManager Instance { get; private set; }
+    private static DeliveryManager _instance;
+    public static DeliveryManager Instance
+    {
+        get
+        {
+            if (!_instance) _instance = new DeliveryManager();
+            return _instance;
+        }
+        private set { }
+    }
 
     private void Start()
     {
-        if (Instance == null) Instance = this;
+        if (_instance == null) _instance = this;
         else Destroy(this);
 
         _queuedOrders = new List<DishRecipeSO>();
