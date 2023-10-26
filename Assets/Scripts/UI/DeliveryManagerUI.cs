@@ -1,21 +1,15 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeliveryManagerUI : MonoBehaviour
 {
-    [SerializeField] public Transform _container;
+    [SerializeField] public Transform _recipeCardContainer;
     [SerializeField] public Transform _recipeTemplate;
 
     private void Start()
     {
         DeliveryManager.Instance.OnNewOrderCreated += OnOrderCreatedAction;
         DeliveryManager.Instance.OnOrderDelivered += OnOrderDeliveredAction;
-
-        ClearVisual();
     }
 
     private void OnOrderDeliveredAction(object sender, EventArgs e)
@@ -32,7 +26,7 @@ public class DeliveryManagerUI : MonoBehaviour
         ClearVisual();
         foreach (DishRecipeSO order in DeliveryManager.Instance._queuedOrders)
         {
-            Transform newRecipe = Instantiate(_recipeTemplate, _container);
+            Transform newRecipe = Instantiate(_recipeTemplate, _recipeCardContainer);
             newRecipe.gameObject.SetActive(true);
             newRecipe.GetComponent<RecipeCardUI>().UpdateName(order);
         }
@@ -40,7 +34,7 @@ public class DeliveryManagerUI : MonoBehaviour
 
     private void ClearVisual()
     {
-        foreach (Transform child in _container)
+        foreach (Transform child in _recipeCardContainer)
         {
             if (child == _recipeTemplate) continue;
             Destroy(child.gameObject);

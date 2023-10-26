@@ -7,6 +7,10 @@ public class PlateUI : MonoBehaviour
 
     private void Start()
     {
+    }
+
+    private void Awake()
+    {
         _plate.OnHeldItemsChange += OnHeldItemsChangedAction;
     }
 
