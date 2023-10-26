@@ -5,7 +5,8 @@ public class FryingCounter : BaseCounter, IHasProgress
 {
     public event EventHandler<IHasProgress.OnProgressChangeEventArgs> OnProgressChange;
     [SerializeField] private FryingRecipeSO[] _availableRecipesArr;
-    private float _progress;
+    private float _progress = 0;
+
 
     public override void Interacted(IKitchenWieldableParent player)
     {

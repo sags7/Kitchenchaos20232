@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IKitchenWieldableParent
 {
+    public static Player _instance;
+    public static Player Instance { get => _instance; private set { } }
     public event EventHandler<OnSelectedCounterChangeEventArgs> OnSelectedCounterChange;
     public class OnSelectedCounterChangeEventArgs : EventArgs { public BaseCounter selectedCounter; }
-    public static Player Instance { get; private set; }
     [SerializeField] private float _movementSpeed = 10f;
     [SerializeField] private float _rotateSpeed = 10f;
     [SerializeField] private GameInput _gameInput;
@@ -18,15 +19,11 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
     private Vector2 _inputVector;
     private BaseCounter _selectedCounter;
 
-
-    private void Awake()
-    {
-        if (Instance != null) Debug.LogError("Error: There is more than one instance of Player class");
-        Instance = this;
-    }
-
     private void Start()
     {
+        if (!_instance) _instance = this;
+        else Destroy(this);
+
         _gameInput.OnInteract += OnInteractAction;
         _gameInput.OnAlternateInteract += OnAlternateInteractAction;
     }
@@ -118,7 +115,6 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
 
     public void SwapWieldablesWith(IKitchenWieldableParent newParent)
     {
-        //copied from BaseCounter implementation(untested)
         KitchenWieldable newParentItem = newParent.KitchenWieldableHeld ? newParent.KitchenWieldableHeld : null;
         KitchenWieldable playerItem = KitchenWieldableHeld ? KitchenWieldableHeld : null;
         if (newParentItem) newParentItem.Set_ParentHoldingMe(this);

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CuttingCounter : BaseCounter, IHasProgress
 {
+    public delegate void MyDelegate<T>(T arg);                  //just used my on delegate here to practice creating them
+    public static event MyDelegate<int> OnAnyCuttingProgress;   //just used my on delegate here to practice creating them instead of using EventHandler, Func, Action....
     public event EventHandler<IHasProgress.OnProgressChangeEventArgs> OnProgressChange;
     [SerializeField] private CuttingRecipeSO[] _availableRecipesArr;
     private int _progress;
@@ -29,6 +31,7 @@ public class CuttingCounter : BaseCounter, IHasProgress
             if (KitchenWieldableHeld._kitchenWieldableSO == recipe.input)
             {
                 _progress++;
+                OnAnyCuttingProgress?.Invoke(3);//this event uses my own Delegate just to practice, should change to EventHandler at some point.
                 OnProgressChange?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs { progress = (float)_progress / recipe.cuttingNeeded });
                 if (_progress >= recipe.cuttingNeeded)
                 {

@@ -1,9 +1,11 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
 {
+
+    public static event EventHandler OnPlayerPickedSomething;
+    public static event EventHandler OnCounterPickedSomething;
     private void Start()
     {
         TrySetupSpawnPoint();
@@ -52,6 +54,9 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
         KitchenWieldableHeld = playerItem;
         if (counterItem) counterItem.Set_ParentHoldingMe(newParent);
         newParent.KitchenWieldableHeld = counterItem;
+
+        if (newParent.KitchenWieldableHeld) OnPlayerPickedSomething?.Invoke(this, EventArgs.Empty);
+        if (KitchenWieldableHeld) OnCounterPickedSomething?.Invoke(this, EventArgs.Empty);
     }
 
     public bool TryPopulatePlate(IKitchenWieldableParent otherParent)

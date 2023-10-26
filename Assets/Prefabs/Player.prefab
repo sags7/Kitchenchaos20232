@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 644672988112986230}
   - component: {fileID: 5382765955333389063}
+  - component: {fileID: 5697083111560280701}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -86,6 +87,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   <SpawnPoint>k__BackingField: {fileID: 2182884501231187440}
+--- !u!114 &5697083111560280701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7987378848027207306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1566e2d0bab53ef4d91e15597d3d1d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 5382765955333389063}
+  _footStepTimerInterval: 0.125
 --- !u!1001 &2502171964042691691
 PrefabInstance:
   m_ObjectHideFlags: 0
