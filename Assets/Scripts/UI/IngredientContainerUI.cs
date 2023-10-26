@@ -24,7 +24,7 @@ public class IngredientContainerUI : MonoBehaviour
             {
                 Transform newIcon = Instantiate(_ingredientIconTemplate, _ingredientContainer);
                 newIcon.gameObject.SetActive(true);
-                newIcon.GetComponent<IndividualIngredientIconUI>()._image.sprite = requirement.Ingredient._sprite;
+                newIcon.GetComponent<IndividualIngredientIconUI>().SetSprite(requirement.Ingredient._sprite);
             }
         }
     }
