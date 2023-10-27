@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IKitchenWieldableParent
 {
-    public static Player _instance;
-    public static Player Instance { get => _instance; private set { } }
+    public static Player Instance { get; private set; }
     public event EventHandler<OnSelectedCounterChangeEventArgs> OnSelectedCounterChange;
     public class OnSelectedCounterChangeEventArgs : EventArgs { public BaseCounter selectedCounter; }
     [SerializeField] private float _movementSpeed = 10f;
@@ -21,16 +20,10 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
 
     private void Start()
     {
-        if (!_instance) _instance = this;
-        else Destroy(this);
+        Instance = this;
 
         _gameInput.OnInteract += OnInteractAction;
         _gameInput.OnAlternateInteract += OnAlternateInteractAction;
-    }
-
-    private void OnAlternateInteractAction(object sender, EventArgs e)
-    {
-        if (_selectedCounter) _selectedCounter.AlternativeInteracted(this);
     }
 
     private void Update()
@@ -71,7 +64,12 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
 
     private void OnInteractAction(object sender, EventArgs e)
     {
-        if (_selectedCounter) _selectedCounter.Interacted(this);
+        if (_selectedCounter && GameManager.Instance.IsGamePlaying) _selectedCounter.Interacted(this);
+    }
+
+    private void OnAlternateInteractAction(object sender, EventArgs e)
+    {
+        if (_selectedCounter && GameManager.Instance.IsGamePlaying) _selectedCounter.AlternativeInteracted(this);
     }
 
     private void HandleMovement()

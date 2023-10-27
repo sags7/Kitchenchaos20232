@@ -23,10 +23,9 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void PlayFootstepSound()
-    {
+    public void PlayFootstepSound() =>
         PlaySound(_audioClipRefSo._footstep, Camera.main.transform.position, _effectVolume);
-    }
+
     private void Trash_OnAnyObjectTrashedAction(object sender, EventArgs e) =>
         PlaySound(_audioClipRefSo._trash, Camera.main.transform.position, _effectVolume);
 
