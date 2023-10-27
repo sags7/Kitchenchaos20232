@@ -7,6 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public event EventHandler OnGameStateChanged;
+    public bool IsGamePlaying { get => _state == State.GamePlaying; }
+    public bool IsCountingDown { get => _state == State.CountdownToStart; }
+    public bool IsGameOver { get => _state == State.GameOver; }
+    public State _state;
+    private float _waitingToStartTimer = 1f;
+    private float _countdownToStartTimer = 3f;
+    private float _gamePlayingTimer;
+    private float _gamePlayingTimerMax = 20f;
     public enum State
     {
         WaitingToStart,
@@ -14,16 +22,11 @@ public class GameManager : MonoBehaviour
         GamePlaying,
         GameOver,
     }
-    public bool IsGamePlaying { get => _state == State.GamePlaying; }
-    public bool IsGameOver { get => _state == State.GameOver; }
-    public State _state;
-    private float _waitingToStartTimer = 1f;
-    private float _countdownToStartTimer = 3f;
-    private float _GamePlayingTimer = 10f;
 
     private void Start()
     {
         _state = State.WaitingToStart;
+        _gamePlayingTimer = _gamePlayingTimerMax;
     }
 
     private void Awake()
@@ -54,8 +57,8 @@ public class GameManager : MonoBehaviour
                 break;
             case State.GamePlaying:
                 OnGameStateChanged?.Invoke(this, EventArgs.Empty);
-                _GamePlayingTimer -= Time.deltaTime;
-                if (_GamePlayingTimer < 0f)
+                _gamePlayingTimer -= Time.deltaTime;
+                if (_gamePlayingTimer < 0f)
                 {
                     _state = State.GameOver;
                     OnGameStateChanged?.Invoke(this, EventArgs.Empty);
@@ -64,9 +67,9 @@ public class GameManager : MonoBehaviour
             case State.GameOver:
                 Debug.Log(_state);
                 break;
-
         }
-        //Debug.Log(_state);
     }
+
     public float GetCountdownToStartTimer() => _countdownToStartTimer;
+    public float GetGamePlayingTimerNormalized() => 1 - (_gamePlayingTimer / _gamePlayingTimerMax);
 }

@@ -9,7 +9,6 @@ public class Plate : KitchenWieldable
     public class OnDishCompleteEventArgs : EventArgs { public List<GameObject> CompleteDishVisualsList; }
     public event EventHandler<OnHeldItemsChangeEventArgs> OnHeldItemsChange;
     public class OnHeldItemsChangeEventArgs : EventArgs { public List<KitchenWieldableSO> itemsList; }
-    public DishRecipeSO _finishedRecipe; //review later if needed
     [SerializeField] private List<KitchenWieldableSO> _acceptableItems;
     [SerializeField] private List<DishRecipeSO> _acceptableRecipes;
     private const int _MAX_ITEMS = 9;
@@ -40,10 +39,8 @@ public class Plate : KitchenWieldable
             //if (ExtractListOfRequirements(_heldItems).SequenceEqual(ExtractListOfRequirements(recipe))) Debug.Log("Match!");
             if (ExtractListOfRequirements(_heldItems).SequenceEqual(ExtractListOfRequirements(recipe)))
             {
-                _finishedRecipe = recipe;
                 OnDishComplete?.Invoke(this, new OnDishCompleteEventArgs { CompleteDishVisualsList = recipe.CompletedRecipeVisualObjects });
             }
-            else _finishedRecipe = null;
         }
     }
 

@@ -2,9 +2,9 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class CountdownTimerUI : MonoBehaviour
+public class GameOverUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _countdownText;
+    [SerializeField] private TextMeshProUGUI _ordersDeliveredNumber;
 
     private void Start()
     {
@@ -14,9 +14,8 @@ public class CountdownTimerUI : MonoBehaviour
 
     private void OnGameStateChangedAction(object sender, EventArgs args)
     {
-        if (GameManager.Instance.IsCountingDown) gameObject.SetActive(true);
+        if (GameManager.Instance.IsGameOver) gameObject.SetActive(true);
         else gameObject.SetActive(false);
-        _countdownText.text = Mathf.Ceil(GameManager.Instance.GetCountdownToStartTimer()).ToString();
+        _ordersDeliveredNumber.text = DeliveryManager.Instance.SuccessfulDeliveries.ToString();
     }
 }
-

@@ -5,17 +5,7 @@ using UnityEngine;
 
 public class DeliveryManager : MonoBehaviour
 {
-    private static DeliveryManager _instance;
-    public static DeliveryManager Instance
-    {
-        get
-        {
-            if (!_instance) _instance = new DeliveryManager();
-            return _instance;
-        }
-        private set { }
-    }
-
+    public static DeliveryManager Instance { get; private set; }
     public event EventHandler OnNewOrderCreated;
     public event EventHandler OnOrderDelivered;
     public event EventHandler OnOrderSuccess;
@@ -26,12 +16,11 @@ public class DeliveryManager : MonoBehaviour
     [SerializeField] private float _orderInterval = 5f;
     private float _newOrderTimer = 0;
     private int _maxQueue = 5;
-
+    public int SuccessfulDeliveries { get; private set; }
 
     private void Start()
     {
-        if (_instance == null) _instance = this;
-        else Destroy(this);
+        Instance = this;
 
         _queuedOrders = new List<DishRecipeSO>();
         _deliveryCounter.OnPlateDelivered += OnPlateDeliveredAction;
@@ -45,6 +34,7 @@ public class DeliveryManager : MonoBehaviour
             if (recipeFound == false && args._plateDelivered.ExtractListOfRequirements(args._plateDelivered._heldItems).SequenceEqual(args._plateDelivered.ExtractListOfRequirements(_queuedOrders[i])))
             {
                 //Delivery Success
+                SuccessfulDeliveries++;
                 _queuedOrders.RemoveAt(i);
                 OnOrderDelivered?.Invoke(this, EventArgs.Empty);
                 OnOrderSuccess?.Invoke(this, EventArgs.Empty);
