@@ -76,6 +76,7 @@ public class GameInput : MonoBehaviour
         Instance = this;
 
         playerInputActions = new PlayerInputActions();
+        if (PlayerPrefs.HasKey(PREFS_KEY_BINDINGS)) playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PREFS_KEY_BINDINGS));
         playerInputActions.Player.Enable();
 
         playerInputActions.Player.Interact.performed += OnInteractAction;
