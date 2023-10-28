@@ -4,8 +4,8 @@ using UnityEngine;
 public class DishSpawnerCounter : BaseCounter
 {
     [SerializeField] private int _maxPlates = 4;
-    [SerializeField] private float _spawnDelay = 1;
     [SerializeField] private GameObject _plate;
+    [SerializeField] private float _spawnDelay = 3f;
     private List<KitchenWieldable> _currentPlates;
     private float _SpawnTimer = 0;
 
@@ -41,10 +41,12 @@ public class DishSpawnerCounter : BaseCounter
             if (_currentPlates.Count != 0) KitchenWieldableHeld = _currentPlates[^1];
             else KitchenWieldableHeld = null;
         }
-        else if (player.KitchenWieldableHeld is KitchenWieldable && !(player.KitchenWieldableHeld is Plate) && _currentPlates.Count > 0)
+        else if (player.KitchenWieldableHeld is KitchenWieldable
+        && Plate.CountItems(player.KitchenWieldableHeld._kitchenWieldableSO, Plate.AcceptableItems) > 0
+        && !(player.KitchenWieldableHeld is Plate) && _currentPlates.Count > 0)
         {
             PopulatePlateOrSwap(player);
-            RemoveLastFromList();
+            if (player.KitchenWieldableHeld is Plate) RemoveLastFromList();
             SwapWieldablesWith(player);
             if (_currentPlates.Count != 0) KitchenWieldableHeld = _currentPlates[^1];
             else KitchenWieldableHeld = null;

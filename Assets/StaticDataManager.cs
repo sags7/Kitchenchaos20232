@@ -7,5 +7,6 @@ public class StaticDataManager : MonoBehaviour
         BaseCounter.ClearStaticData();
         CuttingCounter.ClearStaticData();
         TrashCounter.ClearStaticData();
+        Plate.ClearStaticData();
     }
 }

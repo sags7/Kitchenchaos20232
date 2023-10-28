@@ -95,7 +95,7 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
         }
         else Move(moveDir, moveDistance);
 
-        transform.forward = Vector3.Slerp(transform.forward, moveDir, _rotateSpeed * Time.deltaTime);
+        if (moveDir != Vector3.zero) transform.forward = Vector3.Slerp(transform.forward, moveDir, _rotateSpeed * Time.deltaTime);
     }
 
     private void Move(Vector3 moveDir, float moveDistance)

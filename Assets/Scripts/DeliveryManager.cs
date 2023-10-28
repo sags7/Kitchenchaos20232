@@ -18,7 +18,7 @@ public class DeliveryManager : MonoBehaviour
     private int _maxQueue = 5;
     public int SuccessfulDeliveries { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         Instance = this;
 
