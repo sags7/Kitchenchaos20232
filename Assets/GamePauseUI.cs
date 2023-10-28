@@ -6,6 +6,7 @@ public class GamePauseUI : MonoBehaviour
 {
     [SerializeField] private Button _mainMenuButton;
     [SerializeField] private Button _resumeButton;
+    [SerializeField] private Button _soundButton;
     private void Start()
     {
         GameManager.Instance.OnGamePaused += OnGamePausedAction;
@@ -18,6 +19,7 @@ public class GamePauseUI : MonoBehaviour
     {
         _mainMenuButton.onClick.AddListener(() => SceneLoader.Load(SceneLoader.Scene.MainMenuScene));
         _resumeButton.onClick.AddListener(() => GameManager.Instance.TogglePauseGame(this, EventArgs.Empty));
+        _soundButton.onClick.AddListener(() => SoundMenuUI.Instance.Show());
     }
 
     private void OnGameUnPausedAction(object sender, EventArgs e)
