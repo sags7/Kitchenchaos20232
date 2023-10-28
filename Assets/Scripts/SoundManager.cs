@@ -8,18 +8,22 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClipRefSO _audioClipRefSo;
     private float _effectVolumeMultiplier = 0.2f;
     private float _cycleVolumeStep = 0.1f;
+    private const string PREFS_EFFECTS_VOLUME = "EffectsVolume";
+
     public float EffectsVolume { get; private set; }
 
     private void Awake()
     {
-        EffectsVolume = 1f;
+        EffectsVolume = PlayerPrefs.GetFloat(PREFS_EFFECTS_VOLUME, 1f);
         Instance = this;
     }
 
     public void CycleVolume()
     {
         EffectsVolume += _cycleVolumeStep;
-        if (EffectsVolume > 1f) EffectsVolume = 0f;
+        if (EffectsVolume > 1f + _cycleVolumeStep) EffectsVolume = 0f;
+        PlayerPrefs.SetFloat(PREFS_EFFECTS_VOLUME, EffectsVolume);
+        PlayerPrefs.Save();
     }
 
     private void Start()

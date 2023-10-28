@@ -35,6 +35,7 @@ public class SoundMenuUI : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.OnGameUnpaused += OnGameUnpausedAction;
+        UpdateVisual();
         Hide();
     }
 
@@ -45,8 +46,8 @@ public class SoundMenuUI : MonoBehaviour
 
     private void UpdateVisual()
     {
-        _effectsButtonText.text = "Effects Volume: " + Mathf.Ceil(SoundManager.Instance.EffectsVolume * 10);
-        _musicButtonText.text = "Effects Volume: " + Mathf.Ceil(MusicManager.Instance.MusicVolume * 10);
+        _effectsButtonText.text = "Effects Volume: " + Mathf.RoundToInt(SoundManager.Instance.EffectsVolume * 10);
+        _musicButtonText.text = "Effects Volume: " + Mathf.RoundToInt(MusicManager.Instance.MusicVolume * 10);
     }
 
     internal void Show()
