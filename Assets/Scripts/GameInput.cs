@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
+    private const string PREFS_KEY_BINDINGS = "InputBindings";
     public static GameInput Instance { get; private set; }
     public event EventHandler OnInteract;
     public event EventHandler OnAlternateInteract;
@@ -64,6 +65,8 @@ public class GameInput : MonoBehaviour
             playerInputActions.Player.Enable();
             callback.Dispose();
             actionAfterRebound();
+            PlayerPrefs.SetString(PREFS_KEY_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
+            PlayerPrefs.Save();
         }).Start();
     }
 
@@ -79,6 +82,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.AlternateInteract.performed += OnAlternateInteractAction;
         playerInputActions.Player.Pause.performed += OnPauseAction;
 
+        if (PlayerPrefs.HasKey(PREFS_KEY_BINDINGS)) playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PREFS_KEY_BINDINGS));
     }
 
     private void OnDestroy()
