@@ -11,6 +11,12 @@ public class BaseCounter : MonoBehaviour, IKitchenWieldableParent
         TrySetupSpawnPoint();
     }
 
+    public static void ClearStaticData()
+    {
+        OnPlayerPickedSomething = null;
+        OnCounterPickedSomething = null;
+    }
+
     private void TrySetupSpawnPoint()
     {
         try

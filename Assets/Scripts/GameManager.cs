@@ -32,10 +32,10 @@ public class GameManager : MonoBehaviour
         _state = State.WaitingToStart;
         _gamePlayingTimer = _gamePlayingTimerMax;
 
-        GameInput.Instance.OnGamePaused += PauseGameToggle;
+        GameInput.Instance.OnGamePaused += TogglePauseGame;
     }
 
-    private void PauseGameToggle(object sender, EventArgs e)
+    public void TogglePauseGame(object sender, EventArgs e)
     {
         _isGamePaused = !_isGamePaused;
         if (_isGamePaused == true)

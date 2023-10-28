@@ -5,9 +5,6 @@ public class PlateUI : MonoBehaviour
     [SerializeField] private Plate _plate;
     [SerializeField] private Transform _iconTemaplate;
 
-    private void Start()
-    {
-    }
 
     private void Awake()
     {

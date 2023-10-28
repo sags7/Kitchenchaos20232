@@ -9,6 +9,10 @@ public class CuttingCounter : BaseCounter, IHasProgress
     [SerializeField] private CuttingRecipeSO[] _availableRecipesArr;
     private int _progress;
 
+    new public static void ClearStaticData()
+    {
+        OnAnyCuttingProgress = null;
+    }
     public override void Interacted(IKitchenWieldableParent player)
     {
         PopulatePlateOrSwap(player);
