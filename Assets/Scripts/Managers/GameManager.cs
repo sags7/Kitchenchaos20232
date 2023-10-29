@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private Transform _mainCanvas;
     public static GameManager Instance { get; private set; }
     public event EventHandler OnGameStateChanged;
     public event EventHandler OnGamePaused;
@@ -13,11 +14,12 @@ public class GameManager : MonoBehaviour
     public bool IsCountingDown { get => _state == State.CountdownToStart; }
     public bool IsGameOver { get => _state == State.GameOver; }
     public State _state;
-    private float _waitingToStartTimer = 1f;
+    private bool _isWaitingToStart = true;
     private float _countdownToStartTimer = 3f;
     private float _gamePlayingTimer;
     private float _gamePlayingTimerMax = 300f;
     private bool _isGamePaused = false;
+
 
     public enum State
     {
@@ -29,10 +31,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _mainCanvas.gameObject.SetActive(true);
         _state = State.WaitingToStart;
         _gamePlayingTimer = _gamePlayingTimerMax;
 
         GameInput.Instance.OnGamePaused += TogglePauseGame;
+        GameInput.Instance.OnInteract += OnInteractAction;
+    }
+
+    private void OnInteractAction(object sender, EventArgs e)
+    {
+        _isWaitingToStart = false;
+        GameInput.Instance.OnInteract -= OnInteractAction;
     }
 
     public void TogglePauseGame(object sender, EventArgs e)
@@ -60,12 +70,8 @@ public class GameManager : MonoBehaviour
         switch (_state)
         {
             case State.WaitingToStart:
-                _waitingToStartTimer -= Time.deltaTime;
-                if (_waitingToStartTimer < 0f)
-                {
+                if (_isWaitingToStart == false)
                     _state = State.CountdownToStart;
-                    OnGameStateChanged?.Invoke(this, EventArgs.Empty);
-                }
                 break;
             case State.CountdownToStart:
                 OnGameStateChanged?.Invoke(this, EventArgs.Empty);

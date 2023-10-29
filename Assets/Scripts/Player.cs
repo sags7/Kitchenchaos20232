@@ -28,10 +28,13 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
 
     private void Update()
     {
-        _inputVector = _gameInput.GetMovementVectorNormalized();
-        HandleMovement();
-        UpdateInteractDirection();
-        HandleInteractions();
+        if (GameManager.Instance.IsGamePlaying)
+        {
+            _inputVector = _gameInput.GetMovementVectorNormalized();
+            HandleMovement();
+            UpdateInteractDirection();
+            HandleInteractions();
+        }
     }
 
     private void UpdateInteractDirection()

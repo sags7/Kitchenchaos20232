@@ -21,9 +21,10 @@ public class DishSpawnerCounter : BaseCounter
 
     private void SpawnerTimer()
     {
+
         if (_currentPlates.Count < _maxPlates)
         {
-            _SpawnTimer += Time.deltaTime;
+            if (GameManager.Instance.IsGamePlaying) _SpawnTimer += Time.deltaTime;
             if (_SpawnTimer >= _spawnDelay)
             {
                 _SpawnTimer = 0;

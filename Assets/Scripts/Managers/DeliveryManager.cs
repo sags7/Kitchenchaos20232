@@ -59,7 +59,7 @@ public class DeliveryManager : MonoBehaviour
 
     private void HandleOrderCreation()
     {
-        _newOrderTimer += Time.deltaTime;
+        if (GameManager.Instance.IsGamePlaying) _newOrderTimer += Time.deltaTime;
 
         if (_newOrderTimer >= _orderInterval && _queuedOrders.Count < _maxQueue)
         {

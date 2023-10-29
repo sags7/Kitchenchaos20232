@@ -26,7 +26,7 @@ public class FryingCounter : BaseCounter, IHasProgress
             _progress = 0;
             OnProgressChange?.Invoke(this, new IHasProgress.OnProgressChangeEventArgs { progress = _progress });
         }
-        else Debug.Log("No Ingredients on Counter");
+        //else Debug.Log("No Ingredients on Counter");
     }
 
     private void Update()
@@ -45,9 +45,8 @@ public class FryingCounter : BaseCounter, IHasProgress
                 if (_progress >= recipe.FryingNeeded)
                 {
                     TransmuteTo(recipe.output);
-                    _progress = 1 * Time.deltaTime;
+                    _progress = Time.deltaTime;
                 }
-
                 //CURRENT IMPLEMENTATION ONLY WORKS WITH ONE INPUT INGREDIENT AND IS HARDCODED TO BE THE FIRST ON THE ARRAY!!!
             }
         };

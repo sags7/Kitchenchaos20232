@@ -14,6 +14,7 @@ public class MusicManager : MonoBehaviour
     private void Awake()
     {
         MusicVolume = PlayerPrefs.GetFloat(PREFS_MUSIC_VOLUME, 1f);
+        _musicAudioSource.volume = MusicVolume;
         Instance = this;
     }
     public void CycleVolume()

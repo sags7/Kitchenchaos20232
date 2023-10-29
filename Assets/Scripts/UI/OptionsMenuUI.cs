@@ -80,7 +80,7 @@ public class OptionsMenuUI : MonoBehaviour
     private void UpdateVisual()
     {
         _effectsButtonText.text = "Effects Volume: " + Mathf.RoundToInt(SoundManager.Instance.EffectsVolume * 10);
-        _musicButtonText.text = "Effects Volume: " + Mathf.RoundToInt(MusicManager.Instance.MusicVolume * 10);
+        _musicButtonText.text = "Music Volume: " + Mathf.RoundToInt(MusicManager.Instance.MusicVolume * 10);
 
         _moveUpButtonText.text = GameInput.Instance.GetBindingName(GameInput.Binding.Move_Up);
         _moveDownButtonText.text = GameInput.Instance.GetBindingName(GameInput.Binding.Move_Down);

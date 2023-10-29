@@ -14,8 +14,8 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        EffectsVolume = PlayerPrefs.GetFloat(PREFS_EFFECTS_VOLUME, 1f);
         Instance = this;
+        EffectsVolume = PlayerPrefs.GetFloat(PREFS_EFFECTS_VOLUME, 1f);
     }
 
     public void CycleVolume()
@@ -39,6 +39,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayFootstepSound() =>
         PlaySound(_audioClipRefSo._footstep, Camera.main.transform.position, EffectsVolume * _effectVolumeMultiplier);
+    public void PlayCountdownSound() =>
+        PlaySound(_audioClipRefSo._warning, Camera.main.transform.position, EffectsVolume * _effectVolumeMultiplier);
 
     private void Trash_OnAnyObjectTrashedAction(object sender, EventArgs e) =>
         PlaySound(_audioClipRefSo._trash, Camera.main.transform.position, EffectsVolume * _effectVolumeMultiplier);

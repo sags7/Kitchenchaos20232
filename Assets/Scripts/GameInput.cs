@@ -70,7 +70,6 @@ public class GameInput : MonoBehaviour
         }).Start();
     }
 
-
     private void Awake()
     {
         Instance = this;
