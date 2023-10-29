@@ -15,5 +15,6 @@ public class MainMenuUI : MonoBehaviour
     private void Awake()
     {
         Time.timeScale = 1f;
+        _playButton.Select();
     }
 }

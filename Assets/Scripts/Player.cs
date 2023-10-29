@@ -90,7 +90,6 @@ public class Player : MonoBehaviour, IKitchenWieldableParent
             {
                 moveDir = new Vector3(0, 0, moveDir.z);
                 Move(moveDir, moveDistance);
-
             }
         }
         else Move(moveDir, moveDistance);

@@ -27,7 +27,7 @@ public class OptionsMenuUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _pauseButtonText;
     [SerializeField] private Button _backButton;
     [SerializeField] private Transform _pressToRebindKeyUI;
-
+    private Action _callersShowFunction;
 
     private void Awake()
     {
@@ -91,13 +91,17 @@ public class OptionsMenuUI : MonoBehaviour
         _pauseButtonText.text = GameInput.Instance.GetBindingName(GameInput.Binding.Pause);
     }
 
-    internal void Show()
+    internal void Show(Action callersShow)
     {
         transform.gameObject.SetActive(true);
+        _backButton.Select();
+        _callersShowFunction = callersShow;
     }
     internal void Hide()
     {
         transform.gameObject.SetActive(false);
+        _callersShowFunction?.Invoke();
+        _callersShowFunction = null;
     }
 
     private void ShowPressToRebindUI()
