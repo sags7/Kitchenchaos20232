@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class DeliveryOutcomeUI : MonoBehaviour
 {
     [SerializeField] private Transform _successCard;
     [SerializeField] private Transform _failureCard;
-    private int _flashTimer = 1000;
+    private int _flashTimer = 1;
 
 
     private void Awake()
@@ -24,18 +25,18 @@ public class DeliveryOutcomeUI : MonoBehaviour
 
     private void OnOrderSuccessAction(object sender, EventArgs e)
     {
-        Flash(_successCard);
+        GameManager.Instance.StartCoroutine(Flash(_successCard));
     }
 
     private void OnOrderFailAction(object sender, EventArgs e)
     {
-        Flash(_failureCard);
+        GameManager.Instance.StartCoroutine(Flash(_failureCard));
     }
 
-    private async void Flash(Transform deliveryCard)
+    private IEnumerator Flash(Transform deliveryCard)
     {
         Show(deliveryCard);
-        await Task.Delay(_flashTimer);
+        yield return new WaitForSeconds(_flashTimer);
         Hide(deliveryCard);
     }
 
